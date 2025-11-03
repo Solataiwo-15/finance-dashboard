@@ -1,60 +1,67 @@
-# FinDash - A Finance Management Dashboard
+# FinDash - Finance Management Dashboard
 
-This project is a technical assessment for the Talentra Africa internship program. It's a single-page web application that allows small business owners to manage invoices and track key financial metrics.
+FinDash is a modern, responsive web application built as a technical assessment for the Talentra Africa internship program. It provides a comprehensive solution for small business owners to manage invoices, track revenue, and visualize their financial data in real-time.
 
-### [Live Demo Link](YOUR_VERCEL_DEPLOYMENT_LINK_HERE)
+### 🔗 Live Demo: [https://finance-dashboard-swart-ten.vercel.app/]
 
-### [Demo Video Link](YOUR_LOOM_OR_YOUTUBE_LINK_HERE)
+### 🎥 Demo Video: [YOUR_LOOM_OR_YOUTUBE_LINK_HERE]
 
-![Screenshot of the FinDash Dashboard](./screenshot.png)
-_(You should add a screenshot of your finished dashboard to the `public` folder and name it `screenshot.png`)_
-
----
-
-## Features
-
-- **Secure Authentication:** Users can sign up and log in using a secure, email/password-based system powered by Appwrite Auth.
-- **Real-Time CRUD:** Create, Read, Update, and Delete invoices instantly. The UI updates in real-time without needing a page refresh.
-- **Interactive Dashboard:** An at-a-glance overview of key financial metrics, including Total Revenue, Pending Payments, and VAT collected.
-- **Data Visualization:** A responsive bar chart that visualizes the status of all invoices (Paid vs. Unpaid).
-- **Responsive Design:** A clean and modern UI that works seamlessly on both desktop and mobile devices.
+![Screenshot of the FinDash Dashboard](./public/screenshot.png)
 
 ---
 
-## Tech Stack
+## ✨ Features
 
-- **Framework:** Next.js (with App Router)
+- **Secure Authentication:** Full user registration and login system powered by Appwrite Auth. Protected routes ensure only authenticated users can access the dashboard.
+- **Dynamic Dashboard:** An at-a-glance overview of key financial metrics, including Total Revenue, Pending Payments, and VAT summaries, which update in real-time.
+- **Full Invoice Management (CRUD):**
+  - **Create:** Add new invoices through an intuitive modal form.
+  - **Read:** View all invoices in a clean, filterable table.
+  - **Update:** Mark invoices as "Paid" and edit existing invoice details.
+  - **Delete:** Remove invoices with a confirmation step.
+- **Real-Time State Management:** The UI updates instantly when invoices are created, updated, or deleted, thanks to Zustand.
+- **Data Visualization:** An interactive bar chart from Recharts provides a clear visual breakdown of paid vs. unpaid invoices.
+- **Pixel-Perfect UI:** The user interface is carefully crafted to match the provided Figma design specifications.
+- **Fully Responsive:** A seamless experience across all devices, from large desktops to mobile phones, featuring a slide-out navigation menu for smaller screens.
+- **Advanced Polish:** Includes user-friendly features like toast notifications, form validation, and dynamic due-date countdowns (e.g., "Overdue", "Due in 5 days").
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14+ (with App Router)
 - **Language:** TypeScript
+- **Backend:** Appwrite (for Authentication and Database)
 - **Styling:** Tailwind CSS
 - **UI Components:** ShadCN/UI
-- **Backend as a Service (BaaS):** Appwrite (for Auth and Database)
 - **State Management:** Zustand
 - **Charting:** Recharts
+- **Date Management:** date-fns
 - **Deployment:** Vercel
 
 ---
 
-## Getting Started Locally
+## 🚀 Running the Project Locally
 
-To run this project on your local machine, follow these steps:
+To set up and run this project on your local machine, follow these steps:
 
-1.  **Clone the repository:**
+1.  **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/[YourUsername]/[YourRepoName].git
-    cd [YourRepoName]
+    git clone https://github.com/[YourGitHubUsername]/[YourRepositoryName].git
+    cd [YourRepositoryName]
     ```
 
-2.  **Install dependencies:**
+2.  **Install Dependencies:**
 
     ```bash
     npm install
     ```
 
-3.  **Set up environment variables:**
+3.  **Set Up Environment Variables:**
 
     - Create a file named `.env.local` in the root of the project.
-    - Add your Appwrite project credentials:
+    - Add your Appwrite project credentials. You can get these from your Appwrite Cloud console.
 
     ```env
     NEXT_PUBLIC_APPWRITE_PROJECT_ID="YOUR_PROJECT_ID"
@@ -63,8 +70,10 @@ To run this project on your local machine, follow these steps:
     NEXT_PUBLIC_APPWRITE_INVOICES_COLLECTION_ID="YOUR_COLLECTION_ID"
     ```
 
-4.  **Run the development server:**
+4.  **Run the Development Server:**
+
     ```bash
     npm run dev
     ```
-    Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+    The application will be available at `http://localhost:3000`.

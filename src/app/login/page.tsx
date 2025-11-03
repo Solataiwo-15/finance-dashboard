@@ -65,7 +65,7 @@ export default function LoginPage() {
   return (
     <div className="w-full lg:grid lg:h-screen lg:grid-cols-2">
       <div className="flex flex-col justify-between p-8">
-        <div className="flex justify-start">
+        <div className="flex justify-start mb-2">
           <Logo />
         </div>
 

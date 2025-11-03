@@ -1,5 +1,3 @@
-// src/components/user-nav.tsx
-
 "use client";
 
 import { useAppStore } from "@/lib/store";
@@ -13,9 +11,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { account } from "@/lib/appwrite"; // <-- IMPORT
-import { useRouter } from "next/navigation"; // <-- IMPORT
-import toast from "react-hot-toast"; // <-- IMPORT
+import { account } from "@/lib/appwrite";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export function UserNav() {
   const { user, setUser } = useAppStore();
@@ -31,7 +29,6 @@ export function UserNav() {
       toast.error("Failed to log out.");
     }
   };
-  // Function to get initials from a name
   const getInitials = (name: string) => {
     const names = name.split(" ");
     if (names.length > 1) {
@@ -41,7 +38,7 @@ export function UserNav() {
   };
 
   if (!user) {
-    return null; // Don't render if there's no user
+    return null;
   }
 
   return (
@@ -52,7 +49,7 @@ export function UserNav() {
           className="relative h-10 rounded-full flex gap-2 px-4"
         >
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/avatars/01.png" alt="@shadcn" />
+            <AvatarImage src="/avatar.png" alt="@shadcn" />
             <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
           </Avatar>
           <span>{user.name}</span>

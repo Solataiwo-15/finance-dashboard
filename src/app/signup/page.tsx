@@ -1,22 +1,17 @@
-// src/app/signup/page.tsx (V5 - Figma Design)
-
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAppStore } from "@/lib/store";
 import { account } from "@/lib/appwrite";
 import toast from "react-hot-toast";
 import { AppwriteException } from "appwrite";
 import { CurvyLink } from "@/components/curvy-link";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-// Re-using the Logo component for consistency
 function Logo() {
   return (
     <div className="flex items-center gap-2">

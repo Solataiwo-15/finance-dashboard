@@ -1,8 +1,5 @@
-// src/components/invoice-list.tsx (V7 - As a Presentational Component)
-
 "use client";
 
-// NO LONGER IMPORTS from the global store
 import { Models } from "appwrite";
 import { databases } from "@/lib/appwrite";
 import toast from "react-hot-toast";
@@ -34,9 +31,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { DueDate } from "./due-date";
-import { MoreHorizontal, CheckCircle, Trash2, Pencil } from "lucide-react"; // <-- Add Pencil
-
-// We still need the main store for UPDATE and DELETE actions
+import { MoreHorizontal, CheckCircle, Trash2, Pencil } from "lucide-react";
 import { useAppStore } from "@/lib/store";
 
 export interface Invoice extends Models.Document {
@@ -49,7 +44,6 @@ export interface Invoice extends Models.Document {
 }
 
 const StatusBadge = ({ status }: { status: "Paid" | "Unpaid" }) => {
-  /* ... no changes here ... */
   const isPaid = status === "Paid";
   return (
     <Badge
@@ -64,13 +58,10 @@ const StatusBadge = ({ status }: { status: "Paid" | "Unpaid" }) => {
   );
 };
 
-// --- UPDATED: Accepts invoices as a prop ---
 export function InvoiceList({ invoices }: { invoices: Invoice[] }) {
-  // We only get the action functions from the store now
   const { updateInvoice, deleteInvoice, setEditingInvoice } = useAppStore();
 
   const handleMarkAsPaid = async (invoiceId: string) => {
-    /* ... no changes here ... */
     const promise = databases.updateDocument(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
       process.env.NEXT_PUBLIC_APPWRITE_INVOICES_COLLECTION_ID!,
@@ -86,7 +77,6 @@ export function InvoiceList({ invoices }: { invoices: Invoice[] }) {
   };
 
   const handleDelete = async (invoiceId: string) => {
-    /* ... no changes here ... */
     const promise = databases.deleteDocument(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
       process.env.NEXT_PUBLIC_APPWRITE_INVOICES_COLLECTION_ID!,
@@ -103,7 +93,6 @@ export function InvoiceList({ invoices }: { invoices: Invoice[] }) {
   return (
     <Table>
       <TableHeader>
-        {/* ... table header (no changes) ... */}
         <TableRow>
           <TableHead className="text-xs uppercase text-gray-500">
             Client
@@ -123,7 +112,6 @@ export function InvoiceList({ invoices }: { invoices: Invoice[] }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {/* --- We now use the 'invoices' prop directly --- */}
         {invoices.length === 0 ? (
           <TableRow>
             <TableCell colSpan={5} className="py-8 text-center text-gray-500">
@@ -133,7 +121,6 @@ export function InvoiceList({ invoices }: { invoices: Invoice[] }) {
         ) : (
           invoices.map((invoice) => (
             <TableRow key={invoice.$id} className="border-b">
-              {/* ... All TableCell content (no changes) ... */}
               <TableCell className="py-4">
                 <div className="font-medium">{invoice.clientName}</div>
                 <div className="text-sm text-muted-foreground">
@@ -161,7 +148,6 @@ export function InvoiceList({ invoices }: { invoices: Invoice[] }) {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      {/* --- ADD THE EDIT BUTTON HERE --- */}
                       <DropdownMenuItem
                         onClick={() => setEditingInvoice(invoice)}
                       >

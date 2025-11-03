@@ -1,5 +1,3 @@
-// src/components/due-date.tsx
-
 "use client";
 
 import { format, formatDistanceToNow, isPast, isToday } from "date-fns";
@@ -16,11 +14,9 @@ export function DueDate({ dueDate }: { dueDate: string }) {
   } else if (isDueToday) {
     message = "Due today";
   } else {
-    // 'addSuffix: true' adds "in" for future dates (e.g., "in 5 days")
     message = formatDistanceToNow(date, { addSuffix: true });
   }
 
-  // Apply different text colors based on the status
   const textClassName = cn("text-sm", {
     "text-red-600 font-medium": isOverdue,
     "text-amber-600 font-medium": isDueToday,
@@ -29,9 +25,7 @@ export function DueDate({ dueDate }: { dueDate: string }) {
 
   return (
     <div>
-      {/* Show the formatted, easy-to-read date */}
       <div>{format(date, "PPP")}</div>
-      {/* Show the countdown/overdue message */}
       <div className={textClassName}>{message}</div>
     </div>
   );

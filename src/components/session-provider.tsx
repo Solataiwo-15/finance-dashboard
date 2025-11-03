@@ -1,4 +1,3 @@
-// src/components/session-provider.tsx
 "use client";
 
 import { account } from "@/lib/appwrite";
@@ -9,18 +8,17 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   const { setUser } = useAppStore();
 
   useEffect(() => {
-    // This effect runs once when the app loads
     const checkSession = async () => {
       try {
-        const currentUser = await account.get(); // Check for a logged-in user
-        setUser(currentUser); // If found, update our store
+        const currentUser = await account.get();
+        setUser(currentUser);
       } catch (error) {
-        setUser(null); // If not found, ensure user is set to null
+        setUser(null);
       }
     };
 
     checkSession();
-  }, [setUser]); // The effect depends on the setUser function
+  }, [setUser]);
 
-  return <>{children}</>; // Render the rest of the application
+  return <>{children}</>;
 }

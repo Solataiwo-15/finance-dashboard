@@ -1,10 +1,6 @@
-// src/components/dashboard-layout.tsx (V6 - Smart & Dynamic)
-
-"use client"; // This component now needs to be a client component for the hook
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // <-- Import the hook
+import { usePathname } from "next/navigation";
 import {
   Home,
   LineChart,
@@ -20,14 +16,13 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
 import { UserNav } from "./user-nav";
-import { useAppStore } from "@/lib/store"; // <-- IMPORT
-import { account } from "@/lib/appwrite"; // <-- IMPORT
-import { useRouter } from "next/navigation"; // <-- IMPORT
-import toast from "react-hot-toast"; // <-- IMPORT
-import { EditInvoiceForm } from "./edit-invoice-form"; // <-- IMPORT HERE
-import { cn } from "@/lib/utils"; // For combining class names
+import { useAppStore } from "@/lib/store";
+import { account } from "@/lib/appwrite";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { EditInvoiceForm } from "./edit-invoice-form";
+import { cn } from "@/lib/utils";
 
-// --- UPDATED: Now accepts a 'title' prop ---
 export function DashboardLayout({
   children,
   title,
@@ -35,9 +30,9 @@ export function DashboardLayout({
   children: React.ReactNode;
   title: string;
 }) {
-  const pathname = usePathname(); // Get the current URL path (e.g., '/', '/invoices')
-  const { setUser } = useAppStore(); // Get the setUser function
-  const router = useRouter(); // Get the router
+  const pathname = usePathname();
+  const { setUser } = useAppStore();
+  const router = useRouter();
 
   const handleLogout = async () => {
     try {
@@ -50,7 +45,6 @@ export function DashboardLayout({
     }
   };
 
-  // Define our navigation links in an array for easier mapping
   const navLinks = [
     { href: "/", label: "Dashboard", icon: Home },
     { href: "#", label: "Transactions", icon: LineChart },
@@ -70,7 +64,6 @@ export function DashboardLayout({
           </div>
           <div className="flex-1 overflow-auto py-2">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-              {/* --- Map over the links to create them dynamically --- */}
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -80,8 +73,8 @@ export function DashboardLayout({
                     className={cn(
                       "flex items-center gap-3 rounded-lg px-3 py-2 transition-all",
                       isActive
-                        ? "bg-[#C8EE44] text-primary font-semibold" // Active styles
-                        : "text-muted-foreground hover:text-primary" // Inactive styles
+                        ? "bg-[#C8EE44] text-primary font-semibold"
+                        : "text-muted-foreground hover:text-primary"
                     )}
                   >
                     <link.icon className="h-4 w-4" />
@@ -91,8 +84,7 @@ export function DashboardLayout({
               })}
             </nav>
           </div>
-          <div className="mt-auto p-4 border-t">
-            {/* ... Help and Logout section (no change) ... */}
+          <div className="mt-auto p-4">
             <nav className="grid items-start text-sm font-medium">
               <Link
                 href="#"
@@ -114,7 +106,6 @@ export function DashboardLayout({
 
       <div className="flex flex-col md:pl-[220px] lg:pl-[280px]">
         <header className="flex h-14 items-center justify-between gap-4 bg-white px-4 lg:h-[60px] lg:px-6 sticky top-0 z-10 shadow-sm">
-          {/* Left Side: Contains Mobile Menu and the (conditionally hidden) Title */}
           <div className="flex items-center gap-4">
             <Sheet>
               <SheetTrigger asChild>
@@ -161,12 +152,28 @@ export function DashboardLayout({
                     );
                   })}
                 </nav>
+                <div className="mt-auto p-4">
+                  <nav className="grid items-start text-sm font-medium">
+                    <Link
+                      href="#"
+                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                    >
+                      <HelpCircle className="h-4 w-4" /> Help
+                    </Link>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start"
+                      onClick={handleLogout}
+                    >
+                      <LogoutIcon className="mr-2 h-4 w-4" /> Logout
+                    </Button>
+                  </nav>
+                </div>
               </SheetContent>
             </Sheet>
             <h1 className="hidden text-xl font-semibold md:block">{title}</h1>
           </div>
 
-          {/* Right Side: Contains Icons and UserNav */}
           <div className="flex items-center gap-2 md:gap-4">
             <Button variant="ghost" size="icon" className="rounded-full">
               <Search className="h-5 w-5" />

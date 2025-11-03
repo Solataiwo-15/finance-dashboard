@@ -1,12 +1,9 @@
-// src/components/edit-invoice-form.tsx
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import toast from "react-hot-toast";
-
 import { cn } from "@/lib/utils";
 import { databases } from "@/lib/appwrite";
 import { useAppStore } from "@/lib/store";
@@ -38,8 +35,6 @@ import {
 export function EditInvoiceForm() {
   const { editingInvoice, setEditingInvoice, updateInvoice } = useAppStore();
   const [isLoading, setIsLoading] = useState(false);
-
-  // Local state to manage the form fields
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [amount, setAmount] = useState<number | "">("");
@@ -47,7 +42,6 @@ export function EditInvoiceForm() {
   const [dueDate, setDueDate] = useState<Date>();
   const [status, setStatus] = useState<"Paid" | "Unpaid">("Unpaid");
 
-  // This effect runs when `editingInvoice` changes, pre-filling the form
   useEffect(() => {
     if (editingInvoice) {
       setClientName(editingInvoice.clientName);
@@ -88,9 +82,8 @@ export function EditInvoiceForm() {
         error: "Failed to update invoice.",
       });
 
-      // Update the global state
       updateInvoice(editingInvoice.$id, updatedData);
-      setEditingInvoice(null); // Close the dialog
+      setEditingInvoice(null);
     } catch (error) {
       console.error("Error updating invoice:", error);
     } finally {
@@ -98,7 +91,6 @@ export function EditInvoiceForm() {
     }
   };
 
-  // The dialog's open state is now controlled by whether `editingInvoice` is null or not
   const isOpen = editingInvoice !== null;
   const onOpenChange = (open: boolean) => {
     if (!open) {
@@ -116,7 +108,6 @@ export function EditInvoiceForm() {
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* ... Form fields (very similar to create-invoice-form.tsx) ... */}
           <div>
             <Label htmlFor="edit-clientName">Client Name</Label>
             <Input

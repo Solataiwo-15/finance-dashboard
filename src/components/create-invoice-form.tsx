@@ -1,5 +1,3 @@
-// src/components/create-invoice-form.tsx (V5.0 - NO ZOD, GUARANTEED TO WORK)
-
 "use client";
 
 import { useState } from "react";
@@ -8,7 +6,6 @@ import { Calendar as CalendarIcon, PlusCircle } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
 import { Invoice } from "./invoice-list";
-
 import { cn } from "@/lib/utils";
 import { databases } from "@/lib/appwrite";
 import { Button } from "@/components/ui/button";
@@ -44,7 +41,6 @@ export function CreateInvoiceForm() {
   const { addInvoice } = useAppStore();
   const [isLoading, setIsLoading] = useState(false);
 
-  // Direct state management for each field
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [amount, setAmount] = useState<number | "">("");
@@ -52,13 +48,10 @@ export function CreateInvoiceForm() {
   const [dueDate, setDueDate] = useState<Date>();
   const [status, setStatus] = useState("Unpaid");
 
-  // --- NEW: Real-time Calculation Logic ---
   const safeAmount = Number(amount) || 0;
   const safeVat = Number(vat) || 0;
   const vatAmount = safeAmount * (safeVat / 100);
   const totalAmount = safeAmount + vatAmount;
-
-  // The new handleSubmit function for create-invoice-form.tsx
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +71,6 @@ export function CreateInvoiceForm() {
     setIsLoading(true);
 
     try {
-      // We need to await the response to get the newly created document
       const response = await databases.createDocument(
         process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
         process.env.NEXT_PUBLIC_APPWRITE_INVOICES_COLLECTION_ID!,
@@ -92,8 +84,6 @@ export function CreateInvoiceForm() {
           status,
         }
       );
-
-      // Add the new invoice to our global store
       addInvoice(response as unknown as Invoice);
 
       toast.success("Invoice created successfully!");
@@ -106,7 +96,7 @@ export function CreateInvoiceForm() {
       setStatus("Unpaid");
       setOpen(false);
     } catch (error) {
-      const err = error as Error; // Type assertion
+      const err = error as Error;
       toast.error(err.message || "Failed to create invoice.");
       console.error("Error creating invoice:", error);
     } finally {
@@ -127,7 +117,6 @@ export function CreateInvoiceForm() {
           <DialogTitle>Create New Invoice</DialogTitle>
           <DialogDescription>Fill in the details below.</DialogDescription>
         </DialogHeader>
-        {/* We now use a standard form with onChange handlers */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <Label htmlFor="clientName">Client Name</Label>
@@ -170,7 +159,6 @@ export function CreateInvoiceForm() {
               />
             </div>
           </div>
-          {/* --- NEW: Auto-calculation Display Section --- */}
           <div className="rounded-lg bg-gray-50 p-3 space-y-2 border">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">

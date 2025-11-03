@@ -1,5 +1,3 @@
-// src/app/invoices/page.tsx (V3 - With Filtering Logic)
-
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
@@ -7,11 +5,9 @@ import { useRouter } from "next/navigation";
 import { useAppStore } from "@/lib/store";
 import { account, databases } from "@/lib/appwrite";
 import toast from "react-hot-toast";
-
 import { DashboardLayout } from "@/components/dashboard-layout";
 import { InvoiceList, Invoice } from "@/components/invoice-list";
 import { CreateInvoiceForm } from "@/components/create-invoice-form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -24,7 +20,6 @@ export default function InvoicesPage() {
   const [filter, setFilter] = useState<FilterStatus>("All");
 
   useEffect(() => {
-    /* ... same session logic ... */
     const checkSession = async () => {
       try {
         const currentUser = await account.get();
@@ -38,7 +33,6 @@ export default function InvoicesPage() {
   }, [setUser, router]);
 
   useEffect(() => {
-    /* ... same fetch logic ... */
     const fetchInvoices = async () => {
       try {
         const response = await databases.listDocuments(
@@ -56,7 +50,6 @@ export default function InvoicesPage() {
     }
   }, [user, invoices.length, setInvoices]);
 
-  // useMemo will efficiently re-calculate the filtered list only when invoices or the filter changes
   const filteredInvoices = useMemo(() => {
     if (filter === "All") return invoices;
     return invoices.filter((invoice) => invoice.status === filter);
@@ -73,7 +66,6 @@ export default function InvoicesPage() {
   return (
     <DashboardLayout title="Invoices">
       <div className="space-y-4">
-        {/* --- Header with Search and Create Button --- */}
         <div className="flex items-center justify-between">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -86,7 +78,6 @@ export default function InvoicesPage() {
           <CreateInvoiceForm />
         </div>
 
-        {/* --- NEW: Filter Toggle Group --- */}
         <div className="flex items-center justify-between">
           <ToggleGroup
             type="single"
@@ -100,7 +91,6 @@ export default function InvoicesPage() {
         </div>
 
         <div className="rounded-lg bg-white shadow-sm">
-          {/* --- Pass the filtered list to the component --- */}
           <InvoiceList invoices={filteredInvoices} />
         </div>
       </div>

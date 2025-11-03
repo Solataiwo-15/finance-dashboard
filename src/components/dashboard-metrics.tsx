@@ -1,5 +1,3 @@
-// src/components/dashboard-metrics.tsx (V5 - Final Polish)
-
 "use client";
 
 import { useMemo } from "react";
@@ -20,14 +18,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { Wallet, Landmark, Banknote } from "lucide-react"; // More appropriate icons
+import { Wallet, Landmark, Banknote } from "lucide-react";
 import { format } from "date-fns";
 
 export function DashboardMetrics() {
   const { invoices } = useAppStore();
 
   const metrics = useMemo(() => {
-    // ... (same calculation logic)
     const totalInvoices = invoices.length;
     const paidInvoices = invoices.filter((inv) => inv.status === "Paid");
     const unpaidInvoices = invoices.filter((inv) => inv.status === "Unpaid");
@@ -47,11 +44,10 @@ export function DashboardMetrics() {
       { name: "Paid", count: paidInvoices.length },
       { name: "Unpaid", count: unpaidInvoices.length },
     ];
-    // --- NEW: Monthly VAT Calculation Logic ---
+
     const monthlyVatSummary: { [month: string]: number } = {};
 
     paidInvoices.forEach((invoice) => {
-      // Get the month and year as a string key (e.g., "November 2025")
       const monthKey = format(new Date(invoice.dueDate), "MMMM yyyy");
       const vatAmount = invoice.amount * (invoice.vat / 100);
 
@@ -62,7 +58,6 @@ export function DashboardMetrics() {
       }
     });
 
-    // Convert the object into a sorted array for display
     const sortedMonthlyVat = Object.entries(monthlyVatSummary).sort(
       (a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime()
     );
@@ -73,7 +68,7 @@ export function DashboardMetrics() {
       pendingPayments,
       totalVatCollected,
       chartData,
-      sortedMonthlyVat, // <-- Return the new data
+      sortedMonthlyVat,
     };
   }, [invoices]);
 
@@ -86,7 +81,6 @@ export function DashboardMetrics() {
   return (
     <div className="space-y-8">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* Total Invoice Card (Dark) */}
         <Card className="bg-gray-800 text-white shadow-lg rounded-xl col-span-1">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-gray-300 flex items-center gap-2">
@@ -104,7 +98,6 @@ export function DashboardMetrics() {
             </div>
           </CardContent>
         </Card>
-        {/* Amount Paid Card (Light) */}
         <Card className="shadow-lg rounded-xl bg-white">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-gray-500 flex items-center gap-2">
@@ -120,7 +113,6 @@ export function DashboardMetrics() {
             </div>
           </CardContent>
         </Card>
-        {/* Pending Payment Card (Light) */}
         <Card className="shadow-lg rounded-xl bg-white">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-gray-500 flex items-center gap-2">
@@ -137,7 +129,6 @@ export function DashboardMetrics() {
           </CardContent>
         </Card>
       </div>
-      {/* --- NEW: Monthly VAT Summary Card --- */}
       <div className="grid gap-6 md:grid-cols-2">
         <Card className="shadow-sm">
           <CardHeader>
@@ -187,11 +178,6 @@ export function DashboardMetrics() {
           </CardContent>
         </Card>
       </div>
-
-      {/* We can hide these other metrics for now to match the primary design */}
-      {/* 
-      <div className="grid gap-6 md:grid-cols-2"> ... </div>
-      */}
     </div>
   );
 }

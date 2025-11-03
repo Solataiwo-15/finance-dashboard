@@ -57,7 +57,6 @@ export default function DashboardPage() {
     );
   }
 
-  // --- PASS THE TITLE PROP & REMOVE THE H1 ---
   return (
     <DashboardLayout title="Dashboard">
       <div className="space-y-8">

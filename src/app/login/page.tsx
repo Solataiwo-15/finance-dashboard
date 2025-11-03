@@ -1,5 +1,3 @@
-// FINAL-FINAL code for src/app/login/page.tsx
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -11,7 +9,6 @@ import { account } from "@/lib/appwrite";
 import toast from "react-hot-toast";
 import { AppwriteException } from "appwrite";
 import { CurvyLink } from "@/components/curvy-link";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -127,7 +124,6 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
-
         <div></div>
       </div>
 

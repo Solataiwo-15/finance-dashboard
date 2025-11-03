@@ -1,16 +1,13 @@
-// src/app/layout.tsx
-
 import type { Metadata } from "next";
-import { Kumbh_Sans } from "next/font/google"; // Import the Inter font
+import { Kumbh_Sans } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils"; // cn is a utility for merging class names
-import { ToasterProvider } from "@/components/toaster-provider"; // <-- IMPORT
-import { SessionProvider } from "@/components/session-provider"; // <-- IMPORT
+import { cn } from "@/lib/utils";
+import { ToasterProvider } from "@/components/toaster-provider";
+import { SessionProvider } from "@/components/session-provider";
 
-// Initialize the font with the 'latin' subset
 const kumbh = Kumbh_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // '600' is for SemiBold, '700' is for Bold
+  weight: ["400", "500", "600", "700"],
 });
 export const metadata: Metadata = {
   title: "Maglo - Finance Dashboard",
@@ -25,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(kumbh.className, "antialiased")}>
-        <ToasterProvider /> {/* <-- ADD PROVIDER HERE */}
+        <ToasterProvider />
         <SessionProvider> {children} </SessionProvider>
       </body>
     </html>

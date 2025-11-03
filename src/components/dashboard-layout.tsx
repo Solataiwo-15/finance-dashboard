@@ -20,6 +20,10 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
 import { UserNav } from "./user-nav";
+import { useAppStore } from "@/lib/store"; // <-- IMPORT
+import { account } from "@/lib/appwrite"; // <-- IMPORT
+import { useRouter } from "next/navigation"; // <-- IMPORT
+import toast from "react-hot-toast"; // <-- IMPORT
 import { cn } from "@/lib/utils"; // For combining class names
 
 // --- UPDATED: Now accepts a 'title' prop ---
@@ -31,8 +35,18 @@ export function DashboardLayout({
   title: string;
 }) {
   const pathname = usePathname(); // Get the current URL path (e.g., '/', '/invoices')
-  const handleLogout = () => {
-    alert("Logout clicked!");
+  const { setUser } = useAppStore(); // Get the setUser function
+  const router = useRouter(); // Get the router
+
+  const handleLogout = async () => {
+    try {
+      await account.deleteSession("current");
+      setUser(null);
+      toast.success("Logged out successfully");
+      router.push("/login");
+    } catch (error) {
+      toast.error("Failed to log out.");
+    }
   };
 
   // Define our navigation links in an array for easier mapping

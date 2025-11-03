@@ -13,10 +13,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { account } from "@/lib/appwrite"; // <-- IMPORT
+import { useRouter } from "next/navigation"; // <-- IMPORT
+import toast from "react-hot-toast"; // <-- IMPORT
 
 export function UserNav() {
-  const { user } = useAppStore();
+  const { user, setUser } = useAppStore();
+  const router = useRouter();
 
+  const handleLogout = async () => {
+    try {
+      await account.deleteSession("current");
+      setUser(null);
+      toast.success("Logged out successfully");
+      router.push("/login");
+    } catch (error) {
+      toast.error("Failed to log out.");
+    }
+  };
   // Function to get initials from a name
   const getInitials = (name: string) => {
     const names = name.split(" ");

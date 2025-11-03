@@ -2,9 +2,9 @@
 
 FinDash is a modern, responsive web application built as a technical assessment for the Talentra Africa internship program. It provides a comprehensive solution for small business owners to manage invoices, track revenue, and visualize their financial data in real-time.
 
-### 🔗 Live Demo: [https://finance-dashboard-swart-ten.vercel.app/]
+### 🔗 Live Demo: [HERE](https://finance-dashboard-swart-ten.vercel.app/)
 
-### 🎥 Demo Video: [YOUR_LOOM_OR_YOUTUBE_LINK_HERE]
+### 🎥 Demo Video: [HERE](https://www.loom.com/share/f45d66f98e2f4d64aff76678e0ca6fed)
 
 ![Screenshot of the FinDash Dashboard](./public/screenshot.png)
 

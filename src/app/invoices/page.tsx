@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { EditInvoiceForm } from "@/components/edit-invoice-form";
 
 type FilterStatus = "All" | "Paid" | "Unpaid";
 
@@ -104,7 +103,6 @@ export default function InvoicesPage() {
           {/* --- Pass the filtered list to the component --- */}
           <InvoiceList invoices={filteredInvoices} />
         </div>
-        <EditInvoiceForm />
       </div>
     </DashboardLayout>
   );

@@ -24,6 +24,7 @@ import { useAppStore } from "@/lib/store"; // <-- IMPORT
 import { account } from "@/lib/appwrite"; // <-- IMPORT
 import { useRouter } from "next/navigation"; // <-- IMPORT
 import toast from "react-hot-toast"; // <-- IMPORT
+import { EditInvoiceForm } from "./edit-invoice-form"; // <-- IMPORT HERE
 import { cn } from "@/lib/utils"; // For combining class names
 
 // --- UPDATED: Now accepts a 'title' prop ---
@@ -181,6 +182,7 @@ export function DashboardLayout({
           {children}
         </main>
       </div>
+      <EditInvoiceForm />
     </div>
   );
 }

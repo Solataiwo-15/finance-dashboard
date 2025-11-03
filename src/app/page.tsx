@@ -53,9 +53,7 @@ export default function DashboardPage() {
 
   if (!user) {
     return (
-      <p className="flex h-screen items-center justify-center">
-        Loading session...
-      </p>
+      <p className="flex h-screen items-center justify-center">Loading...</p>
     );
   }
 

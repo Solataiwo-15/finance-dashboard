@@ -1,6 +1,6 @@
 # FinDash - Finance Management Dashboard
 
-FinDash is a modern, responsive web application built as a technical assessment for the Talentra Africa internship program. It provides a comprehensive solution for small business owners to manage invoices, track revenue, and visualize their financial data in real-time.
+A responsive and user-friendly finance management dashboard for small businesses, designed to simplify invoice management and provide clear financial summaries. Built with a modern tech stack focused on performance and type safety.
 
 ### 🔗 Live Demo: [HERE](https://finance-dashboard-swart-ten.vercel.app/)
 
@@ -10,16 +10,17 @@ FinDash is a modern, responsive web application built as a technical assessment 
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
 - **Secure Authentication:** Full user registration and login system powered by Appwrite Auth. Protected routes ensure only authenticated users can access the dashboard.
-- **Dynamic Dashboard:** An at-a-glance overview of key financial metrics, including Total Revenue, Pending Payments, and VAT summaries, which update in real-time.
+- **Dynamic Dashboard:** An at-a-glance overview of key financial metrics, including Total Revenue, Pending invoices, and VAT summaries, which update in real-time.
 - **Full Invoice Management (CRUD):**
   - **Create:** Add new invoices through an intuitive modal form.
   - **Read:** View all invoices in a clean, filterable table.
   - **Update:** Mark invoices as "Paid" and edit existing invoice details.
   - **Delete:** Remove invoices with a confirmation step.
 - **Real-Time State Management:** The UI updates instantly when invoices are created, updated, or deleted, thanks to Zustand.
+- **Automated VAT Calculation:** Real-time VAT calculation for all line items.
 - **Data Visualization:** An interactive bar chart from Recharts provides a clear visual breakdown of paid vs. unpaid invoices.
 - **Pixel-Perfect UI:** The user interface is carefully crafted to match the provided Figma design specifications.
 - **Fully Responsive:** A seamless experience across all devices, from large desktops to mobile phones, featuring a slide-out navigation menu for smaller screens.
@@ -29,15 +30,14 @@ FinDash is a modern, responsive web application built as a technical assessment 
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js 14+ (with App Router)
-- **Language:** TypeScript
-- **Backend:** Appwrite (for Authentication and Database)
+- **Frontend:** Next.js(SSR), React, TypeScript
+- **Backend-as-a-Service (BaaS):** Appwrite (for Authentication and Database)
 - **Styling:** Tailwind CSS
 - **UI Components:** ShadCN/UI
 - **State Management:** Zustand
 - **Charting:** Recharts
 - **Date Management:** date-fns
-- **Deployment:** Vercel
+- **Deployment:** Vercel (CI/CD)
 
 ---
 
@@ -48,8 +48,8 @@ To set up and run this project on your local machine, follow these steps:
 1.  **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/[YourGitHubUsername]/[YourRepositoryName].git
-    cd [YourRepositoryName]
+    git clone git clone https://github.com/Solataiwo-15/finance-dashboard.git
+    cd finance-dashboard
     ```
 
 2.  **Install Dependencies:**
@@ -59,7 +59,6 @@ To set up and run this project on your local machine, follow these steps:
     ```
 
 3.  **Set Up Environment Variables:**
-
     - Create a file named `.env.local` in the root of the project.
     - Add your Appwrite project credentials. You can get these from your Appwrite Cloud console.
 

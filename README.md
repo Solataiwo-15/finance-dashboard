@@ -48,7 +48,7 @@ To set up and run this project on your local machine, follow these steps:
 1.  **Clone the Repository:**
 
     ```bash
-    git clone git clone https://github.com/Solataiwo-15/finance-dashboard.git
+    git clone https://github.com/Solataiwo-15/finance-dashboard.git
     cd finance-dashboard
     ```
 
